@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#071e32">
+  <title>Admin | Henota Prime Ocean</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="inbox.css">
+  <script src="admin.js" defer></script>
+  <script src="inbox.js" defer></script>
+</head>
+<body class="admin-body">
+  <div id="toast" class="admin-toast" role="status" hidden></div>
+  <section class="auth-screen" id="auth-screen">
+    <div class="auth-story"><a href="../" class="auth-brand"><img src="../assets/logo.jpg" alt="HPO" width="80" height="54"><span>HENOTA PRIME OCEAN<small>GLOBAL CREWING SOLUTIONS</small></span></a><div><p class="eyebrow light"><span></span>WEBSITE MANAGEMENT</p><h1>Satu tempat.<br><em>Semua kendali.</em></h1><p>Kelola informasi dan tampilan website perusahaan Anda, dengan mudah.</p></div><span class="auth-story-footer">PT. HENOTA PRIME OCEAN · INDONESIA</span></div>
+    <div class="auth-content"><div class="auth-card">
+      <a href="../" class="auth-back">← Kembali ke website</a>
+      <div class="auth-kicker">HPO / ADMIN PANEL</div><h2 id="auth-title">Selamat datang kembali.</h2><p id="auth-description">Masuk untuk mengelola website perusahaan.</p>
+      <div class="admin-notice" id="connection-notice" hidden>Panel admin membutuhkan PHP. Unggah isi folder <strong>dist</strong> ke hosting PHP, lalu buka <strong>domain-Anda/admin/</strong>. Untuk mencoba di komputer, jalankan <strong>start-website.cmd</strong>.</div>
+      <form id="login-form" class="admin-form" hidden>
+        <label>Username<input class="form-control" name="username" autocomplete="username" required maxlength="50" placeholder="Username admin"></label>
+        <label>Password<span class="password-field"><input class="form-control" name="password" type="password" autocomplete="current-password" required maxlength="72" placeholder="Masukkan password"><button type="button" class="show-password" aria-label="Tampilkan password">Lihat</button></span></label>
+        <p class="form-error" id="login-error" role="alert" hidden></p><button type="submit" class="button button-navy auth-submit">Masuk ke panel <span>→</span></button>
+      </form>
+      <form id="setup-form" class="admin-form" hidden>
+        <div class="admin-notice">Buat akun admin Anda. Buka File Manager hosting, aktifkan tampilan file tersembunyi, lalu buka <strong>.hpo-private/setup-key.php</strong>. Salin nilai <strong>key</strong> ke kolom di bawah. File dibuat otomatis setelah halaman ini dibuka.</div>
+        <label>Kode pengaturan<input class="form-control" name="setupKey" autocomplete="off" required placeholder="Tempel nilai key dari File Manager"></label>
+        <label>Username<input class="form-control" name="username" autocomplete="username" pattern="[a-zA-Z0-9_.-]{3,50}" required minlength="3" maxlength="50" placeholder="Contoh: admin.henota"></label>
+        <label>Password baru<span class="password-field"><input class="form-control" name="password" type="password" autocomplete="new-password" required minlength="12" maxlength="72" placeholder="Minimal 12 karakter"><button type="button" class="show-password" aria-label="Tampilkan password">Lihat</button></span></label>
+        <label>Ulangi password<input class="form-control" name="confirmPassword" type="password" autocomplete="new-password" required minlength="12" maxlength="72" placeholder="Ketik ulang password"></label>
+        <p class="form-error" id="setup-error" role="alert" hidden></p><button type="submit" class="button button-navy auth-submit">Buat akun & masuk <span>→</span></button>
+      </form>
+      <p class="auth-footnote">Area pengelolaan khusus PT. Henota Prime Ocean.</p>
+    </div></div>
+  </section>
+  <div id="dashboard" class="dashboard" hidden>
+    <aside class="admin-sidebar"><a class="sidebar-brand" href="../"><img src="../assets/logo.jpg" width="56" height="40" alt="HPO"><span>HENOTA<small>PRIME OCEAN</small></span></a><div class="sidebar-caption">KELOLA WEBSITE</div><nav class="admin-nav" aria-label="Navigasi admin"><a href="#company" class="selected"><span>01</span>Informasi perusahaan</a><a href="#images"><span>02</span>Gambar website</a><a href="#gallery-admin"><span>03</span>Galeri foto <small id="gallery-badge">11</small></a><a href="#security"><span>04</span>Keamanan akun</a><a href="#enquiries"><span>05</span>Pesan masuk</a></nav><div class="sidebar-bottom"><a href="../" target="_blank" rel="noopener">Lihat website <span>↗</span></a><div class="sidebar-user"><span class="user-avatar" aria-hidden="true">H</span><span><strong id="admin-username">Admin</strong><small>Website administrator</small></span></div><button id="logout-button" type="button">Keluar dari akun <span>→</span></button></div></aside>
+    <div class="admin-main">
+      <header class="admin-header"><span class="admin-breadcrumb">WORKSPACE <span>/</span> Company profile</span><div class="admin-header-actions"><span class="save-indicator" id="save-indicator">Semua perubahan tersimpan</span><button id="save-button" class="button button-gold" type="submit" form="site-form">Simpan perubahan <span>↗</span></button></div></header>
+      <main class="admin-content"><div class="admin-page-title"><div><p class="eyebrow"><span></span>CONTENT MANAGEMENT</p><h1>Kelola website Anda.</h1><p>Informasi terbaru. Tampilan yang selalu relevan.</p></div><span class="live-badge"><span></span> Website perusahaan</span></div>
+        <div id="dashboard-error" class="admin-notice error-notice" role="alert" hidden></div>
+        <form id="site-form" class="admin-form">
+          <section id="company" class="admin-panel"><div class="panel-heading"><div><span class="panel-number">01 /</span><h2>Informasi perusahaan</h2><p>Kontak dan alamat yang ditampilkan di website.</p></div><span class="panel-icon">↗</span></div><div class="panel-content">
+            <div class="admin-grid two-columns"><label>Nomor telepon<input class="form-control" name="phone" type="tel" required maxlength="40" placeholder="+62 817-0337-7400"><small>Format tampilan nomor telepon.</small></label><label>Nomor WhatsApp<input class="form-control" name="whatsapp" type="tel" required pattern="[1-9][0-9]{7,14}" placeholder="6281703377400"><small>Gunakan kode negara, tanpa tanda + atau spasi.</small></label></div>
+            <div class="admin-grid two-columns"><label>Email rekrutmen<input class="form-control" name="recruitmentEmail" type="email" required maxlength="72"></label><label>Email bisnis / kemitraan<input class="form-control" name="businessEmail" type="email" required maxlength="72"></label></div>
+            <label>Alamat kantor<textarea class="form-control" name="address" rows="3" required maxlength="1000" placeholder="Alamat lengkap kantor perusahaan"></textarea><small>Tautan Google Maps mengikuti alamat ini secara otomatis.</small></label>
+          </div></section>
+          <section id="images" class="admin-panel"><div class="panel-heading"><div><span class="panel-number">02 /</span><h2>Gambar website</h2><p>Ganti logo dan foto di setiap bagian halaman.</p></div><span class="panel-icon">◈</span></div><div class="panel-content"><div class="upload-guidance">JPG, PNG, atau WebP · Maksimal 8 MB per gambar · Foto landscape disarankan untuk banner.</div><div id="media-editor" class="media-editor"></div></div></section>
+          <section id="gallery-admin" class="admin-panel"><div class="panel-heading"><div><span class="panel-number">03 /</span><h2>Galeri foto</h2><p>Tambah, urutkan, ganti, dan hapus foto beserta keterangannya.</p></div><button class="button button-outline" type="button" id="add-photo-button">Tambah foto <span>+</span></button><input type="file" id="add-photo-input" accept="image/jpeg,image/png,image/webp" hidden></div><div class="panel-content"><div class="gallery-admin-grid" id="gallery-editor"></div></div></section>
+        </form><section id="enquiries" class="admin-panel"><div class="panel-heading"><div><span class="panel-number">05 /</span><h2>Pesan masuk</h2><p>Pertanyaan dari formulir kontak website.</p></div><span class="panel-icon">↙</span></div><div class="panel-content"><div class="inbox-controls"><p id="enquiry-state" role="status">Memuat pesan…</p><button type="button" id="refresh-enquiries">Muat ulang</button></div><p class="inbox-note">Pesan tersimpan di server dan hanya dapat dibuka setelah login. Balas melalui email; hapus pesan yang sudah tidak diperlukan. Notifikasi email bersifat opsional dan memerlukan konfigurasi hosting.</p><div id="enquiry-list"></div></div></section>
+        <section id="security" class="admin-panel"><div class="panel-heading"><div><span class="panel-number">04 /</span><h2>Keamanan akun</h2><p>Perbarui password untuk akun admin Anda.</p></div><span class="panel-icon">◇</span></div><div class="panel-content"><form id="password-form" class="admin-form"><div class="admin-grid three-columns"><label>Password saat ini<input class="form-control" name="currentPassword" type="password" autocomplete="current-password" required maxlength="72"></label><label>Password baru<input class="form-control" name="newPassword" type="password" autocomplete="new-password" required minlength="12" maxlength="72" placeholder="Minimal 12 karakter"></label><label>Ulangi password baru<input class="form-control" name="confirmPassword" type="password" autocomplete="new-password" required minlength="12" maxlength="72"></label></div><p class="form-error" id="password-error" role="alert" hidden></p><button type="submit" class="button button-outline">Perbarui password <span>→</span></button></form></div></section>
+        <footer class="admin-footer"><span>PT. Henota Prime Ocean</span><span id="last-saved">Belum ada perubahan tersimpan.</span></footer>
+      </main>
+    </div>
+  </div>
+  <dialog id="confirm-dialog" class="confirm-dialog"><form method="dialog"><span class="dialog-kicker">HPO / GALERI</span><h2>Hapus foto dari galeri?</h2><p>Foto ini akan hilang dari galeri setelah Anda menyimpan perubahan.</p><div><button class="button button-outline" value="cancel">Batal</button><button class="button button-navy" value="delete">Hapus foto</button></div></form></dialog>
+</body>
+</html>
